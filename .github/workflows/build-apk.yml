@@ -18,7 +18,7 @@ jobs:
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.13.0'
+          flutter-version: '3.22.3'  # 这是能兼容 intl 0.20.x 的正确版本
 
       - name: Install dependencies
         run: flutter pub get
