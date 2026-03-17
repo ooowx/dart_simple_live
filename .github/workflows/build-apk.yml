@@ -15,18 +15,19 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
+      # 这个版本是真正能跑的！
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.19.0'
+          flutter-version: "3.10.0"
 
-      # 强制修改项目依赖，解决 intl 冲突（关键！一次性修好）
-      - name: Fix intl dependency
+      # 强制把项目 intl 改成 0.18.1，完美匹配 Flutter 3.10.0
+      - name: Force fix intl version
         run: |
-          sed -i 's/intl: ^0.20.2/intl: ^0.19.0/' pubspec.yaml
+          sed -i 's/intl: .*/intl: 0.18.1/' pubspec.yaml
         working-directory: ./simple_live_app
 
-      - name: Install dependencies
+      - name: flutter pub get
         run: flutter pub get
         working-directory: ./simple_live_app
 
