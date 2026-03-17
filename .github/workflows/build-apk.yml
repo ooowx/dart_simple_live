@@ -20,14 +20,17 @@ jobs:
         with:
           flutter-version: '3.13.0'
 
+      # 关键：进入 simple_live 目录
       - name: Install dependencies
         run: flutter pub get
+        working-directory: ./simple_live
 
       - name: Build APK
         run: flutter build apk --release
+        working-directory: ./simple_live
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: flutter-apk
-          path: build/app/outputs/flutter-apk/app-release.apk
+          path: simple_live/build/app/outputs/flutter-apk/app-release.apk
